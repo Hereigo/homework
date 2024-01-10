@@ -5,12 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        td {
+            border: 1px solid black;
+            padding: 1rem;
+            margin: .3rem;
+        }
+    </style>
 </head>
 
 <body>
-    <p>
-        Hello!
-    </p>
+    <h2>Test abcd =)</h2>
+    <header>
+    </header>
+    <main>
+        <table>
+            <tr>
+                <td>O</td>
+                <td>X</td>
+                <td>O</td>
+            </tr>
+            <tr>
+                <td>X</td>
+                <td>O</td>
+                <td>X</td>
+            </tr>
+            <tr>
+                <td>O</td>
+                <td>X</td>
+                <td>O</td>
+            </tr>
+        </table>
+    </main>
+    <footer>
+    </footer>
+    <script>
+        const squares = document.querySelectorAll('td');
+        squares.forEach(function (sq) {
+            sq.addEventListener("click", function () {
+                test(this);
+            }, false);
+        })
+        function test(current) {
+            squares.forEach(function (s) {
+                if (current == s) {
+                    s.style.backgroundColor = 'aqua';
+                    console.log('A');
+                } else {
+                    s.style.backgroundColor = 'white';
+                    console.log('W');
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
