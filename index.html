@@ -8,49 +8,63 @@
     <title>Document</title>
     <style>
         td {
-            border: 1px solid black;
-            height: 4rem;
+            /* background-color: aqua; */
+            height: 5rem;
             padding: 0;
-            width: 4rem;
+            width: 5rem;
         }
 
-        button,
         input[type="button"] {
-            background-color: aqua;
+            border-radius: 5px;
+            border: 1px solid rgb(192, 190, 190);
+            font-size: 250%;
+            font-weight: 900;
             height: 100%;
-            margin: 0;
             width: 100%;
         }
     </style>
 </head>
 
 <body>
-    <h2>Test abcd =) 11-10</h2>
+    <h2>Test abcd =) 444</h2>
     <h4 id="h44"></h4>
     <main>
         <table>
             <tr>
-                <td><input id="a1" type="button" value="1" /></td>
-                <td><input id="a2" type="button" value="2" /></td>
-                <td><input id="a3" type="button" /></td>
+                <td><input id="a1" type="button" value="X" /></td>
+                <td><input id="a2" type="button" value=" " /></td>
+                <td><input id="a3" type="button" value=" " /></td>
             </tr>
             <tr>
-                <td><input type="button" /></td>
-                <td><input type="button" /></td>
-                <td><input type="button" /></td>
+                <td><input id="a4" type="button" value=" " /></td>
+                <td><input id="a5" type="button" value=" " /></td>
+                <td><input id="a6" type="button" value=" " /></td>
             </tr>
             <tr>
-                <td><button /></td>
-                <td><button /></td>
-                <td><button /></td>
+                <td><input id="a7" type="button" value=" " /></td>
+                <td><input id="a8" type="button" value="O" /></td>
+                <td><input id="a9" type="button" value="X" /></td>
             </tr>
         </table>
     </main>
     <script>
 
+        // WORKS !!!
+
+        var cages = [];
+        // win rules: 
+        // [1.2.3],[4.5.6],[7.8.9],[1.4.7],[2.5.8],[3.6.9],[1.5.9],[3.5.7]
+
         var x = document.getElementById("a1");
+
         x.addEventListener("click", function () {
-            var y = document.getElementById("a2");
+            //         Math.random() * (max - min + 1) + min;
+            var next = Math.floor(Math.random() * 9) + 1;
+            var nextID = "a" + next;
+
+            console.log('!!!!!! TEST - ', nextID);
+
+            var y = document.getElementById(nextID);
             y.style.backgroundColor = "red";
         });
 
