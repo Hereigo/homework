@@ -12,9 +12,9 @@
         }
 
         td {
-            height: 5rem;
+            height: 6rem;
             padding: 0;
-            width: 5rem;
+            width: 6rem;
         }
 
         input[type="button"] {
@@ -27,20 +27,20 @@
         }
 
         input[type="button"]:disabled {
-            color: brown;
+            color: deepskyblue;
         }
     </style>
 </head>
 
 <body>
-    <h2>Tic-Tac-Toe :)</h2>
-
-    <h4 id="h4">_A_</h4>
+    <h2>
+        (: Tic-Tac-Toe :)
+    </h2>
 
     <main>
         <table>
             <tr>
-                <td><input id="1" type="button" value="X" /></td>
+                <td><input id="1" type="button" value=" " /></td>
                 <td><input id="2" type="button" value=" " /></td>
                 <td><input id="3" type="button" value=" " /></td>
             </tr>
@@ -51,31 +51,69 @@
             </tr>
             <tr>
                 <td><input id="7" type="button" value=" " /></td>
-                <td><input id="8" type="button" value="O" /></td>
-                <td><input id="9" type="button" value="X" /></td>
+                <td><input id="8" type="button" value=" " /></td>
+                <td><input id="9" type="button" value=" " /></td>
             </tr>
         </table>
     </main>
     <script>
 
-        // WORKS !!!
-
-        var cages = [];
-        // win rules: 
-        // [1.2.3],[4.5.6],[7.8.9],[1.4.7],[2.5.8],[3.6.9],[1.5.9],[3.5.7]
+        var boxes9 = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        var user1 = [];
+        var user2 = [];
 
         for (var i = 1; i <= 9; i++) {
-            var item = document.getElementById(i);
-            item.addEventListener("click", function () {
+            document.getElementById(i).addEventListener("click", function () {
+                var idx = boxes9.indexOf(this.id);
+                if (idx > -1) boxes9.splice(idx, 1);
+                user1.push(this.id);
                 this.value = "X";
                 this.setAttribute("disabled", "disabled");
+                this.style.color = "brown";
+                recalculate();
+                botAction();
                 recalculate();
             });
         }
 
         function recalculate() {
-            //         Math.random() * (max - min + 1) + min;
-            var nextID = Math.floor(Math.random() * 9) + 1;
+            // win rules: 
+            // [1.2.3],[4.5.6],[7.8.9],[1.4.7],[2.5.8],[3.6.9],[1.5.9],[3.5.7]
+
+
+            console.log("!!! TEST 1 - ", user1);
+            console.log("!!! TEST 2 - ", user2);
+            console.log("!!! TEST A - ", boxes9);
+        }
+
+        function botAction() {
+
+            if (boxes9.length > 0) {
+
+                console.log('BOT RECALC')
+
+                //         Math.random() * (max - min + 1) + min;
+                var nextID = (Math.floor(Math.random() * 9) + 1).toString();
+
+                var idx = boxes9.indexOf(nextID);
+
+                if (idx <= -1) {
+                    botAction();
+                } else {
+                    var botSelect = document.getElementById(nextID);
+
+                    botSelect.value = "O";
+                    botSelect.setAttribute("disabled", "disabled");
+                    botSelect.style.color = "deepskyblue";
+
+                    boxes9.splice(idx, 1);
+                    user2.push(nextID);
+                }
+            } else {
+
+                console.log('FINISHED.')
+
+            }
         }
 
     </script>
