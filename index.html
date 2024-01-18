@@ -26,6 +26,17 @@
             width: 100%;
         }
 
+        p {
+            color: blueviolet;
+            font-size: x-large;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        #btnReset {
+            display: none;
+        }
+
         input[type="button"]:disabled {
             /* color: rgb(0, 89, 255); */
         }
@@ -33,9 +44,10 @@
 </head>
 
 <body>
-    <h2>
-        (: Tic-Tac-Toe :)
-    </h2>
+    <p>
+        <span id="gameTitle">(: Tic-Tac-Toe :)</span>
+        <button id="btnReset" onclick="resetGame()">Спочатку</button>
+    </p>
 
     <main>
         <table>
@@ -62,6 +74,19 @@
         var robot = [];
         var user = [];
 
+        function resetGame() {
+            boxes9 = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+            robot = [];
+            user = [];
+            for (var i = 1; i <= 9; i++) {
+                document.getElementById(i).removeAttribute("disabled");
+                document.getElementById(i).value = " ";
+            }
+            document.getElementById("btnReset").style.display = "none";
+            document.getElementById("gameTitle").style.display = "block";
+        }
+
+        // Handle User Actions:
         for (var i = 1; i <= 9; i++) {
             document.getElementById(i).addEventListener("click", function () {
                 var idx = boxes9.indexOf(this.id);
@@ -77,21 +102,7 @@
         }
 
         function calcWin(numsArray, isUser) {
-
-            console.log("!!! TEST 1 - ", user);
-            console.log("!!! TEST 2 - ", robot);
-            console.log("!!! TEST A - ", boxes9);
-            console.log('numsArray = ', numsArray);
-
             if (numsArray.length > 2) {
-
-                // win rules: 
-                // [1.2.3],[4.5.6],[7.8.9],[1.4.7],[2.5.8],[3.6.9],[1.5.9],[3.5.7]
-
-                // var result = numsArray.filter((num) => (num == "1" || num == "2" || num == "3"));
-
-                //console.log('result = ', result);
-
                 if (numsArray.filter((num) => (num == "1" || num == "2" || num == "3")).length === 3 ||
                     numsArray.filter((num) => (num == "4" || num == "5" || num == "6")).length === 3 ||
                     numsArray.filter((num) => (num == "7" || num == "8" || num == "9")).length === 3 ||
@@ -101,29 +112,24 @@
                     numsArray.filter((num) => (num == "1" || num == "5" || num == "9")).length === 3 ||
                     numsArray.filter((num) => (num == "3" || num == "5" || num == "7")).length === 3
                 ) {
-
+                    for (var i = 1; i <= 9; i++) {
+                        var element = document.getElementById(i);
+                        element.value = isUser ? "☺" : "☹";
+                        element.style.color = isUser ? "red" : "black";
+                        element.setAttribute("disabled", "disabled");
+                    }
                     boxes9 = [];
-                    console.log((isUser ? "USER" : "ROBOT") + " ---- WINNER!!!!!!!!!!");
-
+                    document.getElementById("gameTitle").style.display = "none";
+                    document.getElementById("btnReset").style.display = "block";
                 }
-
-                // [1.4.7]
-                // [1.3.4.6.7.9]
-
             }
         }
 
         function botAction() {
-
             if (boxes9.length > 0) {
-
-                console.log('BOT RECALC');
-
                 //         Math.random() * (max - min + 1) + min;
                 var nextID = (Math.floor(Math.random() * 9) + 1).toString();
-
                 var idx = boxes9.indexOf(nextID);
-
                 if (idx <= -1) {
                     botAction();
                 } else {
@@ -134,16 +140,10 @@
                     boxes9.splice(idx, 1);
                     robot.push(nextID);
                 }
-
             } else {
                 //  FINISHED.
                 console.log('FINISHED.')
-                //  FINISHED.
             }
-        }
-
-        function checkArray() {
-
         }
 
     </script>
