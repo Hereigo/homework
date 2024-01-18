@@ -59,34 +59,40 @@
     <script>
 
         var boxes9 = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-        var user1 = [];
-        var user2 = [];
+        var robot = [];
+        var user = [];
 
         for (var i = 1; i <= 9; i++) {
             document.getElementById(i).addEventListener("click", function () {
                 var idx = boxes9.indexOf(this.id);
                 boxes9.splice(idx, 1);
-                user1.push(this.id);
+                user.push(this.id);
                 this.value = "X";
                 this.setAttribute("disabled", "disabled");
                 this.style.color = "crimson";
-                calcWin();
+                calcWin(user);
                 botAction();
-                calcWin();
+                calcWin(robot);
             });
         }
 
-        function calcWin() {
-            // win rules: 
-            // [1.2.3],[4.5.6],[7.8.9],[1.4.7],[2.5.8],[3.6.9],[1.5.9],[3.5.7]
+        function calcWin(numsArray) {
+            if (numsArray > 2) {
+
+                // if(numsArray)
+
+                // win rules: 
+                // [1.2.3],[4.5.6],[7.8.9],[1.4.7],[2.5.8],[3.6.9],[1.5.9],[3.5.7]
 
 
-            // [1.4.7]
-            // [1.3.4.6.7.9]
 
 
-            console.log("!!! TEST 1 - ", user1);
-            console.log("!!! TEST 2 - ", user2);
+                // [1.4.7]
+                // [1.3.4.6.7.9]
+
+            }
+            console.log("!!! TEST 1 - ", user);
+            console.log("!!! TEST 2 - ", robot);
             console.log("!!! TEST A - ", boxes9);
         }
 
@@ -109,7 +115,7 @@
                     botSelect.setAttribute("disabled", "disabled");
                     botSelect.style.color = "rgb(0, 89, 255)";
                     boxes9.splice(idx, 1);
-                    user2.push(nextID);
+                    robot.push(nextID);
                 }
 
             } else {
