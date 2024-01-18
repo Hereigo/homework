@@ -25,14 +25,14 @@
 </head>
 
 <body>
-    <h2>Test abcd =) 13-13</h2>
+    <h2>Test abcd =) 11-10</h2>
     <h4 id="h44"></h4>
     <main>
         <table>
             <tr>
-                <td><input type="button" /></td>
-                <td><input type="button" /></td>
-                <td><input type="button" /></td>
+                <td><input id="a1" type="button" value="1" /></td>
+                <td><input id="a2" type="button" value="2" /></td>
+                <td><input id="a3" type="button" /></td>
             </tr>
             <tr>
                 <td><input type="button" /></td>
@@ -47,37 +47,44 @@
         </table>
     </main>
     <script>
-        const squares = document.querySelectorAll('input[type="button"]');
 
-        const h4test = document.querySelector('h4');
-        h4test.innerText = squares.length;
-
-        squares.forEach(function (sq) {
-            sq.addEventListener("click", function () {
-                test(this);
-            }, false);
+        var x = document.getElementById("a1");
+        x.addEventListener("click", function () {
+            var y = document.getElementById("a2");
+            y.style.backgroundColor = "red";
         });
 
-        const btns = document.querySelectorAll('button');
-        h4test.innerText += ('+' + btns.length);
+        // const squares = document.querySelectorAll('input[type="button"]');
 
-        btns.forEach(function (bt) {
-            bt.addEventListener("click", function () {
-                test(this);
-            }, false);
-        });
+        // const h4test = document.querySelector('h4');
+        // h4test.innerText = squares.length;
 
-        function test(current) {
-            squares.forEach(function (s) {
-                if (current == s) {
-                    s.style.backgroundColor = 'aqua';
-                    console.log('A');
-                } else {
-                    s.style.backgroundColor = 'white';
-                    console.log('W');
-                }
-            });
-        }
+        // squares.forEach(function (sq) {
+        //     sq.addEventListener("click", function () {
+        //         test(this);
+        //     }, false);
+        // });
+
+        // const btns = document.querySelectorAll('button');
+        // h4test.innerText += ('+' + btns.length);
+
+        // btns.forEach(function (bt) {
+        //     bt.addEventListener("click", function () {
+        //         test(this);
+        //     }, false);
+        // });
+
+        // function test(current) {
+        //     squares.forEach(function (s) {
+        //         if (current == s) {
+        //             s.style.backgroundColor = 'aqua';
+        //             console.log('A');
+        //         } else {
+        //             s.style.backgroundColor = 'white';
+        //             console.log('W');
+        //         }
+        //     });
+        // }
 
     </script>
 </body>
