@@ -54,19 +54,19 @@
     <main>
         <table>
             <tr>
-                <td><input id="1" type="button" value=" " /></td>
-                <td><input id="2" type="button" value=" " /></td>
-                <td><input id="3" type="button" value=" " /></td>
+                <td><input id="a1" type="button" value=" " /></td>
+                <td><input id="a2" type="button" value=" " /></td>
+                <td><input id="a3" type="button" value=" " /></td>
             </tr>
             <tr>
-                <td><input id="4" type="button" value=" " /></td>
-                <td><input id="5" type="button" value=" " /></td>
-                <td><input id="6" type="button" value=" " /></td>
+                <td><input id="a4" type="button" value=" " /></td>
+                <td><input id="a5" type="button" value=" " /></td>
+                <td><input id="a6" type="button" value=" " /></td>
             </tr>
             <tr>
-                <td><input id="7" type="button" value=" " /></td>
-                <td><input id="8" type="button" value=" " /></td>
-                <td><input id="9" type="button" value=" " /></td>
+                <td><input id="a7" type="button" value=" " /></td>
+                <td><input id="a8" type="button" value=" " /></td>
+                <td><input id="a9" type="button" value=" " /></td>
             </tr>
         </table>
     </main>
@@ -76,99 +76,126 @@
         var robot = [];
         var user = [];
 
-        function resetGame() {
-            boxes9 = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-            robot = [];
-            user = [];
-            for (var i = 1; i <= 9; i++) {
-                document.getElementById(i).removeAttribute("disabled");
-                document.getElementById(i).value = " ";
-            }
-            document.getElementById("btnReset").style.display = "none";
-            document.getElementById("gameTitle").style.display = "block";
-        }
+        // function resetGame() {
+        //     boxes9 = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        //     robot = [];
+        //     user = [];
+        //     for (var i = 1; i <= 9; i++) {
+        //         document.getElementById(i).removeAttribute("disabled");
+        //         document.getElementById(i).value = " ";
+        //     }
+        //     document.getElementById("btnReset").style.display = "none";
+        //     document.getElementById("gameTitle").style.display = "block";
+        // }
 
         // Handle User Actions:
-        for (var i = 1; i <= 9; i++) {
 
-            document.getElementById(i).addEventListener("click", function (e) {
+        // for (var i = 1; i <= 9; i++) {
 
-                var test = document.getElementById("h51");
+        //     var item = document.getElementById(i);
 
-                test.innerText = this.id;
+        //     item.addEventListener("click", function () {
+        //         this.value = "X";
+        //         // this.setAttribute("disabled", "disabled");
+        //         // recalculate();
+        //     });
+        // }
 
-                // console.log('A - ', e);
-                // console.log('B - ', e.target);
-                // console.log('C - ', this);
+        var x = document.getElementById("a1");
 
-                //var item = document.getElementById(i);
-                //
-                //console.log('uitem - ', item)
+        x.addEventListener("click", function () {
+            //         Math.random() * (max - min + 1) + min;
+            var next = Math.floor(Math.random() * 9) + 1;
+            var nextID = "a" + next;
 
-                e.target.value = "X";
+            // console.log('!!!!!! TEST - ', nextID);
 
-                //     e.target.value = "X";
+            var y = document.getElementById(nextID);
+            y.style.backgroundColor = "red";
+            y.value = "X";
 
-                //     // var idx = boxes9.indexOf(this.id);
-                //     // boxes9.splice(idx, 1);
-                //     // user.push(this.id);
-                //     // this.value = "X";
-                //     // this.setAttribute("disabled", "disabled");
-                //     // this.style.color = "crimson";
-                //     // calcWin(user, true);
-                //     // botAction();
-                //     // calcWin(robot, false);
-            });
-        }
+        });
 
-        function calcWin(numsArray, isUser) {
-            if (numsArray.length > 2) {
-                if (numsArray.filter((num) => (num == "1" || num == "2" || num == "3")).length === 3 ||
-                    numsArray.filter((num) => (num == "4" || num == "5" || num == "6")).length === 3 ||
-                    numsArray.filter((num) => (num == "7" || num == "8" || num == "9")).length === 3 ||
-                    numsArray.filter((num) => (num == "1" || num == "4" || num == "7")).length === 3 ||
-                    numsArray.filter((num) => (num == "2" || num == "5" || num == "8")).length === 3 ||
-                    numsArray.filter((num) => (num == "3" || num == "6" || num == "9")).length === 3 ||
-                    numsArray.filter((num) => (num == "1" || num == "5" || num == "9")).length === 3 ||
-                    numsArray.filter((num) => (num == "3" || num == "5" || num == "7")).length === 3
-                ) {
-                    boxes9 = [];
+        // for (var i = 1; i <= 9; i++) {
 
-                    var finalEmoji = isUser ? ":)" : ":(";  // "☺" : "☹";
-                    var finalColor = isUser ? "red" : "black";
+        //     document.getElementById(i).addEventListener("click", function (e) {
 
-                    for (var i = 1; i <= 9; i++) {
-                        var element = document.getElementById(i);
-                        element.value = finalEmoji;
-                        element.style.color = finalColor;
-                        element.setAttribute("disabled", "disabled");
-                    }
-                    document.getElementById("gameTitle").style.display = "none";
-                    document.getElementById("btnReset").style.display = "block";
-                }
-            }
-        }
+        //         var test = document.getElementById("h51");
 
-        function botAction() {
-            if (boxes9.length > 0) {
-                //         Math.random() * (max - min + 1) + min;
-                var nextID = (Math.floor(Math.random() * 9) + 1).toString();
-                var idx = boxes9.indexOf(nextID);
-                if (idx <= -1) {
-                    botAction();
-                } else {
-                    var botSelect = document.getElementById(nextID);
-                    botSelect.value = "O";
-                    botSelect.setAttribute("disabled", "disabled");
-                    botSelect.style.color = "rgb(0, 89, 255)";
-                    boxes9.splice(idx, 1);
-                    robot.push(nextID);
-                }
-            } else {
-                //  FINISHED.
-                console.log('FINISHED.')
-            }
-        }
+        //         test.innerText = this.id;
+
+        //         // console.log('A - ', e);
+        //         // console.log('B - ', e.target);
+        //         // console.log('C - ', this);
+
+        //         //var item = document.getElementById(i);
+        //         //
+        //         //console.log('uitem - ', item)
+
+        //         e.target.value = "X";
+
+        //         //     e.target.value = "X";
+
+        //         //     // var idx = boxes9.indexOf(this.id);
+        //         //     // boxes9.splice(idx, 1);
+        //         //     // user.push(this.id);
+        //         //     // this.value = "X";
+        //         //     // this.setAttribute("disabled", "disabled");
+        //         //     // this.style.color = "crimson";
+        //         //     // calcWin(user, true);
+        //         //     // botAction();
+        //         //     // calcWin(robot, false);
+        //     });
+        // }
+
+        // function calcWin(numsArray, isUser) {
+        //     if (numsArray.length > 2) {
+        //         if (numsArray.filter((num) => (num == "1" || num == "2" || num == "3")).length === 3 ||
+        //             numsArray.filter((num) => (num == "4" || num == "5" || num == "6")).length === 3 ||
+        //             numsArray.filter((num) => (num == "7" || num == "8" || num == "9")).length === 3 ||
+        //             numsArray.filter((num) => (num == "1" || num == "4" || num == "7")).length === 3 ||
+        //             numsArray.filter((num) => (num == "2" || num == "5" || num == "8")).length === 3 ||
+        //             numsArray.filter((num) => (num == "3" || num == "6" || num == "9")).length === 3 ||
+        //             numsArray.filter((num) => (num == "1" || num == "5" || num == "9")).length === 3 ||
+        //             numsArray.filter((num) => (num == "3" || num == "5" || num == "7")).length === 3
+        //         ) {
+        //             boxes9 = [];
+
+        //             var finalEmoji = isUser ? ":)" : ":(";  // "☺" : "☹";
+        //             var finalColor = isUser ? "red" : "black";
+
+        //             for (var i = 1; i <= 9; i++) {
+        //                 var element = document.getElementById(i);
+        //                 element.value = finalEmoji;
+        //                 element.style.color = finalColor;
+        //                 element.setAttribute("disabled", "disabled");
+        //             }
+        //             document.getElementById("gameTitle").style.display = "none";
+        //             document.getElementById("btnReset").style.display = "block";
+        //         }
+        //     }
+        // }
+
+        // function botAction() {
+        //     if (boxes9.length > 0) {
+        //         //         Math.random() * (max - min + 1) + min;
+        //         var nextID = (Math.floor(Math.random() * 9) + 1).toString();
+        //         var idx = boxes9.indexOf(nextID);
+        //         if (idx <= -1) {
+        //             botAction();
+        //         } else {
+        //             var botSelect = document.getElementById(nextID);
+        //             botSelect.value = "O";
+        //             botSelect.setAttribute("disabled", "disabled");
+        //             botSelect.style.color = "rgb(0, 89, 255)";
+        //             boxes9.splice(idx, 1);
+        //             robot.push(nextID);
+        //         }
+        //     } else {
+        //         //  FINISHED.
+        //         console.log('FINISHED.')
+        //     }
+        // }
 
     </script>
 </body>
