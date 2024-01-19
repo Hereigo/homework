@@ -101,7 +101,7 @@
                 this.setAttribute("disabled", "disabled");
                 this.style.color = "crimson";
 
-                // calcWin(user, true);
+                calcWin(user, true);
                 botAction();
                 // calcWin(robot, false);
 
@@ -136,32 +136,50 @@
             }
         }
 
-        // function calcWin(numsArray, isUser) {
-        //     if (numsArray.length > 2) {
-        //         if (numsArray.filter((num) => (num == "1" || num == "2" || num == "3")).length === 3 ||
-        //             numsArray.filter((num) => (num == "4" || num == "5" || num == "6")).length === 3 ||
-        //             numsArray.filter((num) => (num == "7" || num == "8" || num == "9")).length === 3 ||
-        //             numsArray.filter((num) => (num == "1" || num == "4" || num == "7")).length === 3 ||
-        //             numsArray.filter((num) => (num == "2" || num == "5" || num == "8")).length === 3 ||
-        //             numsArray.filter((num) => (num == "3" || num == "6" || num == "9")).length === 3 ||
-        //             numsArray.filter((num) => (num == "1" || num == "5" || num == "9")).length === 3 ||
-        //             numsArray.filter((num) => (num == "3" || num == "5" || num == "7")).length === 3
-        //         ) {
-        //             var finalEmoji = isUser ? ":)" : ":(";  // "☺" : "☹";
-        //             var finalColor = isUser ? "red" : "black";
-        //             boxes9 = [];
-        //             for (var i = 1; i <= 9; i++) {
-        //                 var nextID = "a" + i;
-        //                 var element = document.getElementById(nextID);
-        //                 element.value = finalEmoji;
-        //                 element.style.color = finalColor;
-        //                 element.setAttribute("disabled", "disabled");
-        //             }
-        //             document.getElementById("gameTitle").style.display = "none";
-        //             document.getElementById("btnReset").style.display = "block";
-        //         }
-        //     }
-        // }
+        function checkArray(numsArray, isUser) {
+
+            console.log('FINISHED.', numsArray);
+
+            if ((numsArray.indexOf("a1") > -1) &&
+                (numsArray.indexOf("a2") > -1) &&
+                (numsArray.indexOf("a3") > -1)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function calcWin(numsArray, isUser) {
+
+            if (numsArray.length > 2) {
+                //     if (numsArray.filter((num) => (num == "1" || num == "2" || num == "3")).length === 3 ||
+                //         numsArray.filter((num) => (num == "4" || num == "5" || num == "6")).length === 3 ||
+                //         numsArray.filter((num) => (num == "7" || num == "8" || num == "9")).length === 3 ||
+                //         numsArray.filter((num) => (num == "1" || num == "4" || num == "7")).length === 3 ||
+                //         numsArray.filter((num) => (num == "2" || num == "5" || num == "8")).length === 3 ||
+                //         numsArray.filter((num) => (num == "3" || num == "6" || num == "9")).length === 3 ||
+                //         numsArray.filter((num) => (num == "1" || num == "5" || num == "9")).length === 3 ||
+                //         numsArray.filter((num) => (num == "3" || num == "5" || num == "7")).length === 3
+                //     ) 
+
+                if (checkArray(numsArray)) {
+
+                    var finalEmoji = isUser ? ":)" : ":(";  // "☺" : "☹";
+                    var finalColor = isUser ? "red" : "black";
+                    boxes9 = [];
+                    for (var i = 1; i <= 9; i++) {
+                        var nextID = "a" + i;
+                        var element = document.getElementById(nextID);
+                        element.value = finalEmoji;
+                        element.style.color = finalColor;
+                        element.setAttribute("disabled", "disabled");
+                    }
+                    document.getElementById("gameTitle").style.display = "none";
+                    document.getElementById("btnReset").style.display = "block";
+                }
+            }
+        }
 
     </script>
 </body>
