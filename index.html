@@ -97,7 +97,6 @@
             var nextID = "a" + i;
             var item = document.getElementById(nextID);
             item.addEventListener("click", function (e) {
-
                 var idx = boxes9.indexOf(this.id);
                 boxes9.splice(idx, 1);
                 user.push(this.id);
@@ -105,14 +104,9 @@
                 this.setAttribute("disabled", "disabled");
                 this.style.color = "crimson";
 
-
                 // calcWin(user, true);
                 botAction();
                 // calcWin(robot, false);
-
-
-                // var test = document.getElementById("h51");
-                // test.innerText = boxes9;
 
                 console.log("B - ", boxes9);
                 console.log("R - ", robot);
@@ -125,19 +119,13 @@
             console.log('BOT ACTION.');
 
             if (boxes9.length > 0) {
-
                 //         Math.random() * (max - min + 1) + min;
                 var random = (Math.floor(Math.random() * 9) + 1).toString();
                 var nextID = "a" + random;
-
                 var idx = boxes9.indexOf(nextID);
                 if (idx <= -1) {
-
                     botAction();
-
                 } else {
-
-
                     var botSelect = document.getElementById(nextID);
                     botSelect.value = "O";
                     botSelect.setAttribute("disabled", "disabled");
