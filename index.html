@@ -90,63 +90,21 @@
 
         // Handle User Actions:
 
-        // for (var i = 1; i <= 9; i++) {
-
-        //     var item = document.getElementById(i);
-
-        //     item.addEventListener("click", function () {
-        //         this.value = "X";
-        //         // this.setAttribute("disabled", "disabled");
-        //         // recalculate();
-        //     });
-        // }
-
-        var x = document.getElementById("a1");
-
-        x.addEventListener("click", function () {
-            //         Math.random() * (max - min + 1) + min;
-            var next = Math.floor(Math.random() * 9) + 1;
-            var nextID = "a" + next;
-
-            // console.log('!!!!!! TEST - ', nextID);
-
-            var y = document.getElementById(nextID);
-            y.style.backgroundColor = "red";
-            y.value = "X";
-
-        });
-
-        // for (var i = 1; i <= 9; i++) {
-
-        //     document.getElementById(i).addEventListener("click", function (e) {
-
-        //         var test = document.getElementById("h51");
-
-        //         test.innerText = this.id;
-
-        //         // console.log('A - ', e);
-        //         // console.log('B - ', e.target);
-        //         // console.log('C - ', this);
-
-        //         //var item = document.getElementById(i);
-        //         //
-        //         //console.log('uitem - ', item)
-
-        //         e.target.value = "X";
-
-        //         //     e.target.value = "X";
-
-        //         //     // var idx = boxes9.indexOf(this.id);
-        //         //     // boxes9.splice(idx, 1);
-        //         //     // user.push(this.id);
-        //         //     // this.value = "X";
-        //         //     // this.setAttribute("disabled", "disabled");
-        //         //     // this.style.color = "crimson";
-        //         //     // calcWin(user, true);
-        //         //     // botAction();
-        //         //     // calcWin(robot, false);
-        //     });
-        // }
+        for (var i = 1; i <= 9; i++) {
+            var nextID = "a" + i;
+            var item = document.getElementById(nextID);
+            item.addEventListener("click", function (e) {
+                var idx = boxes9.indexOf(this.id);
+                boxes9.splice(idx, 1);
+                user.push(this.id);
+                this.value = "X";
+                this.setAttribute("disabled", "disabled");
+                this.style.color = "crimson";
+                // calcWin(user, true);
+                // botAction();
+                // calcWin(robot, false);
+            });
+        }
 
         // function calcWin(numsArray, isUser) {
         //     if (numsArray.length > 2) {
