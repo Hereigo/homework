@@ -136,13 +136,10 @@
             }
         }
 
-        function checkArray(numsArray, isUser) {
-
-            console.log('FINISHED.', numsArray);
-
-            if ((numsArray.indexOf("a1") > -1) &&
-                (numsArray.indexOf("a2") > -1) &&
-                (numsArray.indexOf("a3") > -1)) {
+        function checkArray(numsArray, triple) {
+            if ((numsArray.indexOf(triple[0]) > -1) &&
+                (numsArray.indexOf(triple[1]) > -1) &&
+                (numsArray.indexOf(triple[2]) > -1)) {
                 return true;
             }
             else {
@@ -163,7 +160,7 @@
                 //         numsArray.filter((num) => (num == "3" || num == "5" || num == "7")).length === 3
                 //     ) 
 
-                if (checkArray(numsArray)) {
+                if (checkArray(numsArray, ["a1", "a2", "a3"])) {
 
                     var finalEmoji = isUser ? ":)" : ":(";  // "☺" : "☹";
                     var finalColor = isUser ? "red" : "black";
