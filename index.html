@@ -30,6 +30,7 @@
             color: blueviolet;
             font-size: larger;
             font-weight: 900;
+            margin: 0 auto;
             text-align: center;
         }
 
@@ -48,6 +49,7 @@
         <span id="gameTitle">(: Tic-Tac-Toe :)</span>
         <button id="btnReset" onclick="resetGame()">Спочатку</button>
     </p>
+
     <h5 id="h51"></h5>
     <h5 id="h52"></h5>
 
@@ -76,17 +78,18 @@
         var robot = [];
         var user = [];
 
-        // function resetGame() {
-        //     boxes9 = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-        //     robot = [];
-        //     user = [];
-        //     for (var i = 1; i <= 9; i++) {
-        //         document.getElementById(i).removeAttribute("disabled");
-        //         document.getElementById(i).value = " ";
-        //     }
-        //     document.getElementById("btnReset").style.display = "none";
-        //     document.getElementById("gameTitle").style.display = "block";
-        // }
+        function resetGame() {
+            boxes9 = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+            robot = [];
+            user = [];
+            for (var i = 1; i <= 9; i++) {
+                var nextID = "a" + i;
+                document.getElementById(nextID).removeAttribute("disabled");
+                document.getElementById(nextID).value = " ";
+            }
+            document.getElementById("btnReset").style.display = "none";
+            document.getElementById("gameTitle").style.display = "block";
+        }
 
         // Handle User Actions:
 
@@ -101,9 +104,37 @@
                 this.setAttribute("disabled", "disabled");
                 this.style.color = "crimson";
                 // calcWin(user, true);
-                // botAction();
+                botAction();
                 // calcWin(robot, false);
             });
+        }
+
+        function botAction() {
+
+            console.log('BOT ACTION.');
+
+            if (boxes9.length > 0) {
+
+                //         Math.random() * (max - min + 1) + min;
+                var random = (Math.floor(Math.random() * 9) + 1).toString();
+
+                var idx = boxes9.indexOf(random);
+                if (idx <= -1) {
+                    botAction();
+                } else {
+
+                    var nextID = "a" + random;
+                    var botSelect = document.getElementById(nextID);
+                    botSelect.value = "O";
+                    botSelect.setAttribute("disabled", "disabled");
+                    botSelect.style.color = "rgb(0, 89, 255)";
+                    boxes9.splice(idx, 1);
+                    robot.push(random);
+                }
+            } else {
+                //  FINISHED.
+                console.log('FINISHED.');
+            }
         }
 
         // function calcWin(numsArray, isUser) {
@@ -117,13 +148,12 @@
         //             numsArray.filter((num) => (num == "1" || num == "5" || num == "9")).length === 3 ||
         //             numsArray.filter((num) => (num == "3" || num == "5" || num == "7")).length === 3
         //         ) {
-        //             boxes9 = [];
-
         //             var finalEmoji = isUser ? ":)" : ":(";  // "☺" : "☹";
         //             var finalColor = isUser ? "red" : "black";
-
+        //             boxes9 = [];
         //             for (var i = 1; i <= 9; i++) {
-        //                 var element = document.getElementById(i);
+        //                 var nextID = "a" + i;
+        //                 var element = document.getElementById(nextID);
         //                 element.value = finalEmoji;
         //                 element.style.color = finalColor;
         //                 element.setAttribute("disabled", "disabled");
@@ -131,27 +161,6 @@
         //             document.getElementById("gameTitle").style.display = "none";
         //             document.getElementById("btnReset").style.display = "block";
         //         }
-        //     }
-        // }
-
-        // function botAction() {
-        //     if (boxes9.length > 0) {
-        //         //         Math.random() * (max - min + 1) + min;
-        //         var nextID = (Math.floor(Math.random() * 9) + 1).toString();
-        //         var idx = boxes9.indexOf(nextID);
-        //         if (idx <= -1) {
-        //             botAction();
-        //         } else {
-        //             var botSelect = document.getElementById(nextID);
-        //             botSelect.value = "O";
-        //             botSelect.setAttribute("disabled", "disabled");
-        //             botSelect.style.color = "rgb(0, 89, 255)";
-        //             boxes9.splice(idx, 1);
-        //             robot.push(nextID);
-        //         }
-        //     } else {
-        //         //  FINISHED.
-        //         console.log('FINISHED.')
         //     }
         // }
 
