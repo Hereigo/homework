@@ -28,7 +28,7 @@
 
         p {
             color: blueviolet;
-            font-size: x-large;
+            font-size: larger;
             font-weight: 900;
             text-align: center;
         }
@@ -48,6 +48,8 @@
         <span id="gameTitle">(: Tic-Tac-Toe :)</span>
         <button id="btnReset" onclick="resetGame()">Спочатку</button>
     </p>
+    <h5 id="h51"></h5>
+    <h5 id="h52"></h5>
 
     <main>
         <table>
@@ -88,16 +90,34 @@
 
         // Handle User Actions:
         for (var i = 1; i <= 9; i++) {
-            document.getElementById(i).addEventListener("click", function () {
-                var idx = boxes9.indexOf(this.id);
-                boxes9.splice(idx, 1);
-                user.push(this.id);
-                this.value = "X";
-                this.setAttribute("disabled", "disabled");
-                this.style.color = "crimson";
-                calcWin(user, true);
-                botAction();
-                calcWin(robot, false);
+
+            document.getElementById(i).addEventListener("click", function (e) {
+
+                var test = document.getElementById("h51");
+
+                test.innerText = this.id;
+
+                // console.log('A - ', e);
+                // console.log('B - ', e.target);
+                // console.log('C - ', this);
+
+                //var item = document.getElementById(i);
+                //
+                //console.log('uitem - ', item)
+
+                e.target.value = "X";
+
+                //     e.target.value = "X";
+
+                //     // var idx = boxes9.indexOf(this.id);
+                //     // boxes9.splice(idx, 1);
+                //     // user.push(this.id);
+                //     // this.value = "X";
+                //     // this.setAttribute("disabled", "disabled");
+                //     // this.style.color = "crimson";
+                //     // calcWin(user, true);
+                //     // botAction();
+                //     // calcWin(robot, false);
             });
         }
 
@@ -112,13 +132,17 @@
                     numsArray.filter((num) => (num == "1" || num == "5" || num == "9")).length === 3 ||
                     numsArray.filter((num) => (num == "3" || num == "5" || num == "7")).length === 3
                 ) {
+                    boxes9 = [];
+
+                    var finalEmoji = isUser ? ":)" : ":(";  // "☺" : "☹";
+                    var finalColor = isUser ? "red" : "black";
+
                     for (var i = 1; i <= 9; i++) {
                         var element = document.getElementById(i);
-                        element.value = isUser ? "☺" : "☹";
-                        element.style.color = isUser ? "red" : "black";
+                        element.value = finalEmoji;
+                        element.style.color = finalColor;
                         element.setAttribute("disabled", "disabled");
                     }
-                    boxes9 = [];
                     document.getElementById("gameTitle").style.display = "none";
                     document.getElementById("btnReset").style.display = "block";
                 }
