@@ -128,21 +128,22 @@
 
                 //         Math.random() * (max - min + 1) + min;
                 var random = (Math.floor(Math.random() * 9) + 1).toString();
+                var nextID = "a" + random;
 
-                var idx = boxes9.indexOf(random);
+                var idx = boxes9.indexOf(nextID);
                 if (idx <= -1) {
 
-                    // botAction();
+                    botAction();
 
                 } else {
 
-                    var nextID = "a" + random;
+
                     var botSelect = document.getElementById(nextID);
                     botSelect.value = "O";
                     botSelect.setAttribute("disabled", "disabled");
                     botSelect.style.color = "rgb(0, 89, 255)";
                     boxes9.splice(idx, 1);
-                    robot.push(random);
+                    robot.push(nextID);
                 }
             } else {
                 //  FINISHED.
