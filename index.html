@@ -150,6 +150,7 @@
         function calcWin(numsArray, isUser) {
 
             if (numsArray.length > 2) {
+
                 //     if (numsArray.filter((num) => (num == "1" || num == "2" || num == "3")).length === 3 ||
                 //         numsArray.filter((num) => (num == "4" || num == "5" || num == "6")).length === 3 ||
                 //         numsArray.filter((num) => (num == "7" || num == "8" || num == "9")).length === 3 ||
@@ -160,7 +161,15 @@
                 //         numsArray.filter((num) => (num == "3" || num == "5" || num == "7")).length === 3
                 //     ) 
 
-                if (checkArray(numsArray, ["a1", "a2", "a3"])) {
+                if (checkArray(numsArray, ["a1", "a2", "a3"]) ||
+                    checkArray(numsArray, ["a4", "a5", "a6"]) ||
+                    checkArray(numsArray, ["a7", "a8", "a9"]) ||
+                    checkArray(numsArray, ["a1", "a4", "a7"]) ||
+                    checkArray(numsArray, ["a2", "a5", "a8"]) ||
+                    checkArray(numsArray, ["a3", "a6", "a9"]) ||
+                    checkArray(numsArray, ["a1", "a5", "a9"]) ||
+                    checkArray(numsArray, ["a3", "a5", "a7"])
+                ) {
 
                     var finalEmoji = isUser ? ":)" : ":(";  // "☺" : "☹";
                     var finalColor = isUser ? "red" : "black";
